@@ -14,13 +14,8 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - name: Creating directory
-      run: mkdir project
-
     - name: Copy
       uses: actions/checkout@v2
-      with:
-        path: './project'
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
