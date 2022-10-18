@@ -41,6 +41,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd /var/node/ctech-nodejs
+          pm2 kill -a
           yarn install
           yarn build
           yarn start
