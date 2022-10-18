@@ -8,11 +8,13 @@ datasource db {
 }
 
 model events {
-  id         Int          @id @default(autoincrement())
-  name       String       @db.VarChar(100)
-  notes      String?      @db.VarChar(500)
-  banner_url String?      @db.VarChar(200)
-  user_event user_event[]
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar(100)
+  notes       String?      @db.VarChar(500)
+  banner_url  String?      @db.VarChar(200)
+  insignia    Int?
+  competition Int?         @db.SmallInt
+  user_event  user_event[]
 }
 
 model user_event {
