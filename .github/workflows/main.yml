@@ -45,7 +45,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd /var/ctech/nodejs/ctech-nodejs
+          cd /var/node/ctech-nodejs
           yarn install
           yarn build
           yarn start
