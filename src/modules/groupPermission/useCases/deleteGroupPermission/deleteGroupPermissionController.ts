@@ -1,7 +1,7 @@
-import { DeleteUserEventUseCase } from '@modules/userEvent/useCases/deleUserEvent/deleteUserEventUseCase';
 import { Request, Response } from 'express';
+import { DeleteUserEventUseCase } from '@modules/userEvent/useCases/deleteUserEvent/deleteUserEventUseCase';
 
-class DeleteUserEventController {
+class DeleteGroupPermissionController {
 	async handle(req: Request, res: Response) {
 		try {
 			const deleteUserEventUseCase = new DeleteUserEventUseCase();
@@ -17,4 +17,4 @@ class DeleteUserEventController {
 	}
 }
 
-export { DeleteUserEventController };
+export { DeleteGroupPermissionController };

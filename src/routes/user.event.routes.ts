@@ -4,7 +4,7 @@ import { CreateUserEventController } from '@modules/userEvent/useCases/createUse
 import { FindByNameController } from '@modules/userEvent/useCases/findByName/findByNameController';
 import { FindByEventNameController } from '@modules/userEvent/useCases/findByEventName/findByEventNameController';
 import { FindByUsernameController } from '@modules/userEvent/useCases/findByUsername/findByUsernameController';
-import { DeleteUserEventController } from '@modules/userEvent/useCases/deleUserEvent/deleteUserEventController';
+import { DeleteUserEventController } from '@modules/userEvent/useCases/deleteUserEvent/deleteUserEventController';
 import { DeleteByUserController } from '@modules/userEvent/useCases/deleteByUser/deleteByUserController';
 import { DeleteByEventController } from '@modules/userEvent/useCases/deleteByEvent/deleteByEventController';
 

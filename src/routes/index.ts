@@ -5,6 +5,9 @@ import { authenticateRoutes } from './authenticate.routes';
 import { eventRoutes } from './event.routes';
 import { userEventRoutes } from './user.event.routes';
 import { gameRoutes } from './game.routes';
+import { groupRoutes } from './group.routes';
+import { permissionRoutes } from './permission.routes';
+import { groupPermissionRoutes } from './group.permission.routes';
 
 const router = Router();
 
@@ -13,5 +16,8 @@ router.use('/session', authenticateRoutes);
 router.use('/event', eventRoutes);
 router.use('/userevent', userEventRoutes);
 router.use('/game', gameRoutes);
+router.use('/group', groupRoutes);
+router.use('/permission', permissionRoutes);
+router.use('/grouppermission', groupPermissionRoutes);
 
 export { router };

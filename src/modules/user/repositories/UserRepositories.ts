@@ -14,6 +14,7 @@ class UserRepositories implements IUserRepositories {
 				username: true,
 				birth_date: true,
 				phone: true,
+				insignias: true,
 				created_at: true,
 			},
 		});
@@ -40,6 +41,7 @@ class UserRepositories implements IUserRepositories {
 				username: true,
 				birth_date: true,
 				phone: true,
+				insignias: true,
 				created_at: true,
 			},
 		});

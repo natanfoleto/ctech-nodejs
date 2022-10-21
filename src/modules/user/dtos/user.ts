@@ -7,6 +7,7 @@ interface User {
 	password_hash?: string;
 	password_salt?: string;
 	created_at: Date;
+	insignias: number;
 }
 
 interface CreateUser {
