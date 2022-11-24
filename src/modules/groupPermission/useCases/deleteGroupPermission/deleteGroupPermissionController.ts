@@ -1,14 +1,16 @@
 import { Request, Response } from 'express';
-import { DeleteUserEventUseCase } from '@modules/userEvent/useCases/deleteUserEvent/deleteUserEventUseCase';
+import { DeleteGroupPermissionUseCase } from '@modules/groupPermission/useCases/deleteGroupPermission/deleteGroupPermissionUseCase';
 
 class DeleteGroupPermissionController {
 	async handle(req: Request, res: Response) {
 		try {
-			const deleteUserEventUseCase = new DeleteUserEventUseCase();
+			const deleteGroupPermissionUseCase = new DeleteGroupPermissionUseCase();
 
 			const { id } = req.params;
 
-			const response = await deleteUserEventUseCase.execute({ id: Number(id) });
+			const response = await deleteGroupPermissionUseCase.execute({
+				id: Number(id),
+			});
 
 			return res.json(response);
 		} catch (error) {

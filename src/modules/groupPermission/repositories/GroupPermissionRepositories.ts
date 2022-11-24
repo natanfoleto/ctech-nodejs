@@ -20,7 +20,7 @@ class GroupPermissionRepositories implements IGroupPermissionRepositories {
 	}
 
 	async delete(id: number): Promise<void> {
-		await prisma.user_event.deleteMany({
+		await prisma.group_permission.deleteMany({
 			where: { id },
 		});
 	}

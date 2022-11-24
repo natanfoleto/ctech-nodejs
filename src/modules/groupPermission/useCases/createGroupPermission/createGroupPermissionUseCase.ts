@@ -51,7 +51,7 @@ class CreateGroupPermissionUseCase {
 
 			if (associateFound) {
 				return new AppError({
-					message: 'Usuário já está participando deste evento',
+					message: 'Esse grupo já tem essa permissão',
 				});
 			}
 
@@ -61,7 +61,7 @@ class CreateGroupPermissionUseCase {
 			});
 
 			return new AppResponse({
-				message: 'Usuário cadastrado no evento com sucesso!',
+				message: 'Permissão concedida à este grupo com sucesso!',
 				data: userEvent,
 			});
 		} catch (error) {
