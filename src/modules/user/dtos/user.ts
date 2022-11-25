@@ -8,6 +8,7 @@ interface User {
 	password_salt?: string;
 	created_at: Date;
 	insignias: number;
+	id_group: number;
 }
 
 interface CreateUser {
@@ -16,6 +17,7 @@ interface CreateUser {
 	birth_date: Date;
 	password_hash: string;
 	password_salt: string;
+	id_group: number;
 }
 
 interface UpdateUser {
