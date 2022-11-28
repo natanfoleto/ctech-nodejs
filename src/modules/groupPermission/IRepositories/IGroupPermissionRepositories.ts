@@ -3,7 +3,10 @@ import {
 	CreateGroupPermission,
 } from '@modules/groupPermission/dtos/groupPermission';
 
+import { Permission } from '@modules/permission/dtos/permission';
+
 interface IGroupPermissionRepositories {
+	findByGroup(id: number): Promise<Permission[]>;
 	count(data: Associate): Promise<number>;
 	create(data: CreateGroupPermission): Promise<void>;
 	delete(id: number): Promise<void>;
