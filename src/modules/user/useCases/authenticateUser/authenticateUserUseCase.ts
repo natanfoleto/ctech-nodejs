@@ -5,7 +5,6 @@ import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
 import { checkPassword } from '@utils/bcrypt';
 import { GroupPermissionRepositories } from '@modules/groupPermission/repositories/GroupPermissionRepositories';
-import { Permission } from '@modules/permission/dtos/permission';
 
 interface IRequest {
 	username: string;
