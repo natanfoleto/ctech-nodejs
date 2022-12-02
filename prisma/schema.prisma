@@ -52,27 +52,33 @@ model games {
   banner_url String? @db.VarChar(200)
 }
 
+model attractions {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(100)
+  description String @db.VarChar(400)
+}
+
 model groups {
-  id   Int    @id @default(autoincrement())
-  name String @db.VarChar(50)
-  user              users[]
-  group_permission  group_permission[]
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(50)
+  user             users[]
+  group_permission group_permission[]
 }
 
 model group_permission {
-  id            Int          @default(autoincrement())
+  id            Int         @default(autoincrement())
   id_group      Int
   id_permission Int
-  group         groups       @relation(fields: [id_group], references: [id])
-  permission    permissions  @relation(fields: [id_permission], references: [id])
+  group         groups      @relation(fields: [id_group], references: [id])
+  permission    permissions @relation(fields: [id_permission], references: [id])
 
   @@id([id, id_group, id_permission])
 }
 
 model permissions {
-  id   Int      @id @default(autoincrement())
-  name String   @db.VarChar(50)
-  lore String?  @db.VarChar(200)
-  type String   @db.VarChar(25)
-  group_permission  group_permission[]
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(50)
+  lore             String?            @db.VarChar(200)
+  type             String             @db.VarChar(25)
+  group_permission group_permission[]
 }
