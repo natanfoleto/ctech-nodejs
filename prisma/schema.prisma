@@ -41,6 +41,7 @@ model users {
   id_group      Int          @default(2)
   group         groups       @relation(fields: [id_group], references: [id])
   user_event    user_event[]
+  user_quest    user_quest[]
 }
 
 model games {
@@ -59,10 +60,23 @@ model attractions {
 }
 
 model quests {
-  id        Int    @id @default(autoincrement())
-  name      String @db.VarChar(100)
-  objective String @db.VarChar(200)
-  amount    Int
+  id         Int          @id @default(autoincrement())
+  name       String       @db.VarChar(100)
+  objective  String       @db.VarChar(200)
+  amount     Int
+  user_quest user_quest[]
+}
+
+model user_quest {
+  id        Int @default(autoincrement())
+  id_user   Int
+  id_quest  Int
+  collected Int
+
+  users  users  @relation(fields: [id_user], references: [id])
+  quests quests @relation(fields: [id_quest], references: [id])
+
+  @@id([id, id_user, id_quest])
 }
 
 model groups {
