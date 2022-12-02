@@ -58,6 +58,13 @@ model attractions {
   description String @db.VarChar(400)
 }
 
+model quests {
+  id        Int    @id @default(autoincrement())
+  name      String @db.VarChar(100)
+  objective String @db.VarChar(200)
+  amount    Int
+}
+
 model groups {
   id               Int                @id @default(autoincrement())
   name             String             @db.VarChar(50)
