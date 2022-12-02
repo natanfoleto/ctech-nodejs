@@ -2,8 +2,16 @@ import prisma from '@libs/prismaClient';
 
 import { IGroupPermissionRepositories } from '@modules/groupPermission/IRepositories/IGroupPermissionRepositories';
 import { CreateGroupPermission } from '@modules/groupPermission/dtos/groupPermission';
+import { Permission } from '@modules/permission/dtos/permission';
 
 class GroupPermissionRepositories implements IGroupPermissionRepositories {
+	async findByGroup(id: number): Promise<Permission[] | any> {
+		return prisma.group_permission.findMany({
+			where: { group: { id } },
+			select: { permission: true },
+		});
+	}
+
 	async count({ id_group, id_permission }): Promise<number> {
 		return prisma.group_permission.count({
 			where: { AND: { id_group, id_permission } },

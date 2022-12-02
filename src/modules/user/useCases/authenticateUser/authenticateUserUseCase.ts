@@ -4,6 +4,7 @@ import { UserRepositories } from '@modules/user/repositories/UserRepositories';
 import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
 import { checkPassword } from '@utils/bcrypt';
+import { GroupPermissionRepositories } from '@modules/groupPermission/repositories/GroupPermissionRepositories';
 
 interface IRequest {
 	username: string;
@@ -12,9 +13,14 @@ interface IRequest {
 
 class AuthenticateUserUseCase {
 	private userRepositories: UserRepositories;
+	private groupPermissionRepositories: GroupPermissionRepositories;
 
-	constructor(userRepositories = new UserRepositories()) {
+	constructor(
+		userRepositories = new UserRepositories(),
+		groupPermissionRepositories = new GroupPermissionRepositories()
+	) {
 		this.userRepositories = userRepositories;
+		this.groupPermissionRepositories = groupPermissionRepositories;
 	}
 
 	async execute({ username, password }: IRequest): Promise<any> {
@@ -26,6 +32,16 @@ class AuthenticateUserUseCase {
 					message: 'Login ou senha incorretos',
 				});
 
+			const { id_group } = user;
+
+			const data = await this.groupPermissionRepositories.findByGroup(id_group);
+
+			const permissions = data.map(({ permission }) => {
+				const { id, name, lore, type } = permission;
+
+				return { id, name, lore, type };
+			});
+
 			const passwordMatch = await checkPassword(password, user.password_hash);
 
 			if (!passwordMatch)
@@ -34,6 +50,8 @@ class AuthenticateUserUseCase {
 				});
 
 			const tokenPayload = {
+				id_group,
+				permissions,
 				sub: user.id,
 				iss: env.JWT_ISSUER,
 			};
