@@ -6,8 +6,6 @@ interface IRequest {
 	name: string;
 	notes: string;
 	bannerUrl: string;
-	insignia: number;
-	competition: number;
 }
 
 class CreateEventUseCase {
@@ -17,13 +15,7 @@ class CreateEventUseCase {
 		this.eventRepositories = eventRepositories;
 	}
 
-	async execute({
-		name,
-		notes,
-		bannerUrl,
-		insignia,
-		competition,
-	}: IRequest): Promise<any> {
+	async execute({ name, notes, bannerUrl }: IRequest): Promise<any> {
 		try {
 			const eventFound = await this.eventRepositories.countByName(name);
 
@@ -36,8 +28,6 @@ class CreateEventUseCase {
 				name,
 				notes,
 				banner_url: bannerUrl,
-				insignia,
-				competition,
 			});
 
 			return new AppResponse({
