@@ -52,11 +52,17 @@ model games {
   banner_url String? @db.VarChar(200)
 }
 
+model attractions {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(100)
+  description String @db.VarChar(400)
+}
+
 model groups {
   id               Int                @id @default(autoincrement())
   name             String             @db.VarChar(50)
-  group_permission group_permission[]
   user             users[]
+  group_permission group_permission[]
 }
 
 model group_permission {
