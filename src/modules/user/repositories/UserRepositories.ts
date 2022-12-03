@@ -31,6 +31,19 @@ class UserRepositories implements IUserRepositories {
 		});
 	}
 
+	async findAll(): Promise<User[]> {
+		return prisma.users.findMany({
+			select: {
+				id: true,
+				name: true,
+				username: true,
+				birth_date: true,
+				phone: true,
+				created_at: true,
+			},
+		});
+	}
+
 	async findById(id: number): Promise<User> {
 		return prisma.users.findFirst({
 			where: { id },
