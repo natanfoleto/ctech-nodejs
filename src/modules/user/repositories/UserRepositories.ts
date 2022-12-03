@@ -37,8 +37,9 @@ class UserRepositories implements IUserRepositories {
 				id: true,
 				name: true,
 				username: true,
-				birth_date: true,
 				phone: true,
+				group: { select: { name: true } },
+				birth_date: true,
 				created_at: true,
 			},
 		});
@@ -51,8 +52,9 @@ class UserRepositories implements IUserRepositories {
 				id: true,
 				name: true,
 				username: true,
-				birth_date: true,
 				phone: true,
+				group: { select: { name: true } },
+				birth_date: true,
 				created_at: true,
 			},
 		});
