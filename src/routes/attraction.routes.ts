@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-import { FindAllAttractionController } from '@modules/attraction/useCases/findAll/findAllAttractionController';
-import { CreateAttractionController } from '@modules/attraction/useCases/create/createAttractionController';
-import { UpdateAttractionController } from '@modules/attraction/useCases/update/updateAttractionController';
-import { DeleteAttractionController } from '@modules/attraction/useCases/delete/deleteAttractionController';
+import { FindAllAttractionsController } from '@modules/attraction/useCases/findAllAttractions/findAllAttractionsController';
+import { CreateAttractionController } from '@modules/attraction/useCases/createAttraction/createAttractionController';
+import { UpdateAttractionController } from '@modules/attraction/useCases/updateAttraction/updateAttractionController';
+import { DeleteAttractionController } from '@modules/attraction/useCases/deleteAttraction/deleteAttractionController';
 
 const attractionRoutes = Router();
 
-attractionRoutes.get('/', new FindAllAttractionController().handle);
+attractionRoutes.get('/', new FindAllAttractionsController().handle);
 attractionRoutes.post('/', new CreateAttractionController().handle);
 attractionRoutes.put('/:id', new UpdateAttractionController().handle);
 attractionRoutes.delete('/:id', new DeleteAttractionController().handle);

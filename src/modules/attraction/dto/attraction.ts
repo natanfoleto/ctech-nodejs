@@ -1,16 +1,18 @@
-export interface Attraction {
+interface Attraction {
 	id: number;
 	name: string;
 	description: string;
 }
 
-export interface CreateAttraction {
+interface CreateAttraction {
 	name: string;
 	description: string;
 }
 
-export interface UpdateAttraction {
+interface UpdateAttraction {
 	id: number;
 	name: string;
 	description: string;
 }
+
+export { Attraction, CreateAttraction, UpdateAttraction };

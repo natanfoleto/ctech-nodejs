@@ -1,11 +1,12 @@
+import prisma from 'src/libs/prismaClient';
+
 import {
 	CreateAttraction,
 	Attraction,
 	UpdateAttraction,
-} from '../dto/attraction';
-import { IAttractionRepositories } from '../IRepositories/IAttractionRepositories';
+} from '@modules/attraction/dto/attraction';
 
-import prisma from 'src/libs/prismaClient';
+import { IAttractionRepositories } from '../IRepositories/IAttractionRepositories';
 
 export class AttractionRepositories implements IAttractionRepositories {
 	async findAll(): Promise<Attraction[]> {
@@ -21,7 +22,7 @@ export class AttractionRepositories implements IAttractionRepositories {
 	}
 
 	async create(data: CreateAttraction): Promise<Attraction> {
-		return await prisma.attractions.create({
+		return prisma.attractions.create({
 			data,
 		});
 	}

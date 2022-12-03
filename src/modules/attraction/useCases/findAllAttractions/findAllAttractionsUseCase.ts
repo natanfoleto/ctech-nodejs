@@ -1,9 +1,8 @@
-import { Attraction } from '@modules/attraction/dto/attraction';
-import { AttractionRepositories } from '@modules/attraction/repositories/AttractionRepositories';
 import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
+import { AttractionRepositories } from '@modules/attraction/repositories/AttractionRepositories';
 
-class FindAllAttractionUseCase {
+class FindAllAttractionsUseCase {
 	private attractionRepositories: AttractionRepositories;
 
 	constructor(attractionRepositories = new AttractionRepositories()) {
@@ -26,4 +25,4 @@ class FindAllAttractionUseCase {
 	}
 }
 
-export { FindAllAttractionUseCase };
+export { FindAllAttractionsUseCase };
