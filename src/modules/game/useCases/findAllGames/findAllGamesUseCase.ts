@@ -15,6 +15,7 @@ class FindAllGamesUseCase {
 
 			const list = games.map((game) => ({
 				...game,
+				free: game.free ? 'Livre' : 'Torneio',
 				schedules: JSON.parse(game.schedules),
 			}));
 
