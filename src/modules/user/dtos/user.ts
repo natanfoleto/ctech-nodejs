@@ -21,7 +21,9 @@ interface CreateUser {
 
 interface UpdateUser {
 	id: number;
+	name: string;
 	phone: string;
+	birth_date: Date;
 }
 
 export { User, CreateUser, UpdateUser };

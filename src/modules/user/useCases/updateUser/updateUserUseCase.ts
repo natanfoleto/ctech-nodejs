@@ -4,7 +4,9 @@ import { AppResponse } from '@shared/answers/AppResponse';
 
 interface IRequest {
 	id: number;
+	name: string;
 	phone: string;
+	birthDate: Date;
 }
 
 class UpdateUserUseCase {
@@ -14,7 +16,7 @@ class UpdateUserUseCase {
 		this.userRepositories = userRepositories;
 	}
 
-	async execute({ id, phone }: IRequest): Promise<any> {
+	async execute({ id, name, phone, birthDate }: IRequest): Promise<any> {
 		try {
 			if (!phone)
 				return new AppError({
@@ -30,7 +32,9 @@ class UpdateUserUseCase {
 
 			await this.userRepositories.updateUser({
 				id,
+				name,
 				phone,
+				birth_date: birthDate,
 			});
 
 			return new AppResponse({ message: 'Usuário atualizado com sucesso' });
