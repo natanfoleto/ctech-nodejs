@@ -17,11 +17,6 @@ class UpdateUserUseCase {
 
 	async execute({ id, name, phone }: IRequest): Promise<any> {
 		try {
-			if (!phone)
-				return new AppError({
-					message: 'O número de telefone não pode estar vazio',
-				});
-
 			const userFound = await this.userRepositories.countById(id);
 
 			if (!userFound)
