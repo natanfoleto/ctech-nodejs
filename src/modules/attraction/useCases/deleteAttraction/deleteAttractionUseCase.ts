@@ -18,7 +18,7 @@ class DeleteAttractionUseCase {
 			await this.attractionRepositories.delete(id);
 
 			return new AppResponse({
-				message: 'Atração deletada!',
+				message: 'Atração deletada com sucesso',
 			});
 		} catch (error) {
 			throw new AppError({

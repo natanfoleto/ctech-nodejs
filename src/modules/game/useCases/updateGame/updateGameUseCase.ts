@@ -37,7 +37,7 @@ class UpdateGameUseCase {
 			if (!name)
 				return new AppError({ message: 'O game não pode estar vazio' });
 
-			const game = await this.gameRepositories.update({
+			await this.gameRepositories.update({
 				id,
 				name,
 				device,
@@ -46,7 +46,7 @@ class UpdateGameUseCase {
 				banner_url: bannerUrl,
 			});
 
-			return new AppResponse({ data: game });
+			return new AppResponse({ message: 'Game atualizado com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',

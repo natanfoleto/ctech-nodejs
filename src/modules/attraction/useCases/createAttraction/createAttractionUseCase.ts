@@ -32,12 +32,12 @@ export class CreateAttractionUseCase {
 			});
 
 			return new AppResponse({
-				message: 'Atração criada com sucesso!',
+				message: 'Atração criada com sucesso',
 				data: attraction,
 			});
 		} catch (error) {
 			throw new AppError({
-				message: 'Internal server error ',
+				message: 'Internal server error',
 				data: error.toString(),
 			});
 		}

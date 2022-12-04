@@ -24,7 +24,7 @@ class DeleteGameUseCase {
 
 			await this.gameRepositories.delete(id);
 
-			return new AppResponse({ message: 'Game deletado' });
+			return new AppResponse({ message: 'Game deletado com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',

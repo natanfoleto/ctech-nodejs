@@ -17,13 +17,13 @@ class UpdateAttractionUseCase {
 
 	async execute({ id, name, description }: IRequest): Promise<any> {
 		try {
-			const attraction = await this.attractionRepositories.update({
+			await this.attractionRepositories.update({
 				id,
 				name,
 				description,
 			});
 
-			return new AppResponse({ data: attraction });
+			return new AppResponse({ message: 'Atração atualizada com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',
