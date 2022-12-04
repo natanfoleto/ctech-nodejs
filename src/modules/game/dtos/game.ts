@@ -15,4 +15,13 @@ interface CreateGame {
 	banner_url: string;
 }
 
-export { Game, CreateGame };
+interface UpdateGame {
+	id: number;
+	name: string;
+	device: string;
+	free: number;
+	schedules: string;
+	banner_url: string;
+}
+
+export { Game, CreateGame, UpdateGame };

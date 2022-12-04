@@ -1,6 +1,6 @@
 import prisma from '@libs/prismaClient';
 
-import { Game, CreateGame } from '@modules/game/dtos/game';
+import { Game, CreateGame, UpdateGame } from '@modules/game/dtos/game';
 
 import { IGameRepositories } from '@modules/game/IRepositories/IGameRepositories';
 
@@ -23,6 +23,20 @@ class GameRepositories implements IGameRepositories {
 
 	async findAll(): Promise<Game[]> {
 		return prisma.games.findMany();
+	}
+
+	async update({
+		id,
+		name,
+		device,
+		free,
+		schedules,
+		banner_url,
+	}: UpdateGame): Promise<Game> {
+		return prisma.games.update({
+			where: { id },
+			data: { name, device, free, schedules, banner_url },
+		});
 	}
 
 	async delete(id: number): Promise<void> {
