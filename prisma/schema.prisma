@@ -45,7 +45,7 @@ model games {
   id         Int     @id @default(autoincrement())
   name       String  @db.VarChar(100)
   device     String  @db.VarChar(50)
-  free       Int
+  modality   String  @db.VarChar(50)
   schedules  String  @db.VarChar(2000)
   banner_url String? @db.VarChar(200)
 }

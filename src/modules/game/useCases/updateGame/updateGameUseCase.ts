@@ -6,7 +6,7 @@ interface IRequest {
 	id: number;
 	name: string;
 	device: string;
-	free: number;
+	modality: string;
 	schedules: {
 		hourStart: number;
 		hourEnd: number;
@@ -25,7 +25,7 @@ class UpdateGameUseCase {
 		id,
 		name,
 		device,
-		free,
+		modality,
 		schedules,
 		bannerUrl,
 	}: IRequest): Promise<any> {
@@ -41,7 +41,7 @@ class UpdateGameUseCase {
 				id,
 				name,
 				device,
-				free,
+				modality,
 				schedules: JSON.stringify(schedules),
 				banner_url: bannerUrl,
 			});

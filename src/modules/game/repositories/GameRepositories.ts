@@ -29,13 +29,13 @@ class GameRepositories implements IGameRepositories {
 		id,
 		name,
 		device,
-		free,
+		modality,
 		schedules,
 		banner_url,
 	}: UpdateGame): Promise<Game> {
 		return prisma.games.update({
 			where: { id },
-			data: { name, device, free, schedules, banner_url },
+			data: { name, device, modality, schedules, banner_url },
 		});
 	}
 

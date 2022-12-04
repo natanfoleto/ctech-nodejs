@@ -5,12 +5,12 @@ import { AppResponse } from '@shared/answers/AppResponse';
 interface IRequest {
 	name: string;
 	device: string;
-	free: number;
+	modality: string;
 	schedules: {
 		hourStart: number;
 		hourEnd: number;
 	}[];
-	banner_url: string;
+	bannerUrl: string;
 }
 
 class CreateGameUseCase {
@@ -23,17 +23,17 @@ class CreateGameUseCase {
 	async execute({
 		name,
 		device,
-		free,
+		modality,
 		schedules,
-		banner_url,
+		bannerUrl,
 	}: IRequest): Promise<any> {
 		try {
 			const user = await this.gameRepositories.create({
 				name,
 				device,
-				free,
+				modality,
 				schedules: JSON.stringify(schedules),
-				banner_url,
+				banner_url: bannerUrl,
 			});
 
 			return new AppResponse({

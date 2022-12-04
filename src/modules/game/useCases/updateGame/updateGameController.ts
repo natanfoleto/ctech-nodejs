@@ -7,13 +7,13 @@ class UpdateGameController {
 			const updateGameUseCase = new UpdateGameUseCase();
 
 			const { id } = req.params;
-			const { name, device, free, schedules, bannerUrl } = req.body;
+			const { name, device, modality, schedules, bannerUrl } = req.body;
 
 			const response = await updateGameUseCase.execute({
 				id: Number(id),
 				name,
 				device,
-				free,
+				modality,
 				schedules,
 				bannerUrl,
 			});

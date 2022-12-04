@@ -2,7 +2,7 @@ interface Game {
 	id: number;
 	name: string;
 	device: string;
-	free: number;
+	modality: string;
 	schedules: string;
 	banner_url: string;
 }
@@ -10,7 +10,7 @@ interface Game {
 interface CreateGame {
 	name: string;
 	device: string;
-	free: number;
+	modality: string;
 	schedules: string;
 	banner_url: string;
 }
@@ -19,7 +19,7 @@ interface UpdateGame {
 	id: number;
 	name: string;
 	device: string;
-	free: number;
+	modality: string;
 	schedules: string;
 	banner_url: string;
 }
