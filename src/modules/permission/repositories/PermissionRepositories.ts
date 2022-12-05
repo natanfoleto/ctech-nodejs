@@ -43,10 +43,15 @@ class PermissionRepositories implements IPermissionRepositories {
 		});
 	}
 
-	async updatePermission({ id, name }: UpdatePermission): Promise<void> {
+	async updatePermission({
+		id,
+		name,
+		lore,
+		type,
+	}: UpdatePermission): Promise<void> {
 		await prisma.permissions.update({
 			where: { id },
-			data: { name },
+			data: { name, lore, type },
 		});
 	}
 }
