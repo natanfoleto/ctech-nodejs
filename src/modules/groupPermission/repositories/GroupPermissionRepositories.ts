@@ -18,6 +18,12 @@ class GroupPermissionRepositories implements IGroupPermissionRepositories {
 		});
 	}
 
+	async countByPermission(id_permission): Promise<number> {
+		return prisma.group_permission.count({
+			where: { id_permission },
+		});
+	}
+
 	async create({
 		id_group,
 		id_permission,

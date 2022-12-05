@@ -1,6 +1,7 @@
 import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
 import { PermissionRepositories } from '@modules/permission/repositories/PermissionRepositories';
+import { GroupPermissionRepositories } from '@modules/groupPermission/repositories/GroupPermissionRepositories';
 
 interface IRequest {
 	id: number;
@@ -8,9 +9,14 @@ interface IRequest {
 
 class DeletePermissionUseCase {
 	private permissionRepositories: PermissionRepositories;
+	private groupPermissionRepositories: GroupPermissionRepositories;
 
-	constructor(permissionRepositories = new PermissionRepositories()) {
+	constructor(
+		permissionRepositories = new PermissionRepositories(),
+		groupPermissionRepositories = new GroupPermissionRepositories()
+	) {
 		this.permissionRepositories = permissionRepositories;
+		this.groupPermissionRepositories = groupPermissionRepositories;
 	}
 
 	async execute({ id }: IRequest): Promise<any> {
@@ -22,9 +28,17 @@ class DeletePermissionUseCase {
 					message: `Nenhuma permissão encontrada com esse id(${id})`,
 				});
 
+			const permissionAssociate =
+				await this.groupPermissionRepositories.countByPermission(id);
+
+			if (permissionAssociate)
+				return new AppError({
+					message: 'Essa permissão está associada a algum grupo',
+				});
+
 			await this.permissionRepositories.delete(id);
 
-			return new AppResponse({ message: 'Permissão deletada' });
+			return new AppResponse({ message: 'Permissão deletada com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',
