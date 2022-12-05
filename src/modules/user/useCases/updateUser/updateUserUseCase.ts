@@ -6,6 +6,7 @@ interface IRequest {
 	id: number;
 	name: string;
 	phone: string;
+	idGroup: number;
 }
 
 class UpdateUserUseCase {
@@ -15,7 +16,7 @@ class UpdateUserUseCase {
 		this.userRepositories = userRepositories;
 	}
 
-	async execute({ id, name, phone }: IRequest): Promise<any> {
+	async execute({ id, name, phone, idGroup }: IRequest): Promise<any> {
 		try {
 			const userFound = await this.userRepositories.countById(id);
 
@@ -28,6 +29,7 @@ class UpdateUserUseCase {
 				id,
 				name,
 				phone,
+				id_group: idGroup,
 			});
 
 			return new AppResponse({ message: 'Usuário atualizado com sucesso' });

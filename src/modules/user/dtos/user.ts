@@ -23,6 +23,7 @@ interface UpdateUser {
 	id: number;
 	name: string;
 	phone: string;
+	id_group: number;
 }
 
 export { User, CreateUser, UpdateUser };

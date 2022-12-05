@@ -8,12 +8,13 @@ class UpdateUserController {
 			const updateUserUseCase = new UpdateUserUseCase();
 
 			const { id } = req.params;
-			const { name, phone } = req.body;
+			const { name, phone, idGroup } = req.body;
 
 			const response = await updateUserUseCase.execute({
 				id: Number(id),
 				name,
 				phone,
+				idGroup,
 			});
 
 			return res.json(response);
