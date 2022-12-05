@@ -6,7 +6,7 @@ import {
 import { Permission } from '@modules/permission/dtos/permission';
 
 interface IGroupPermissionRepositories {
-	findByGroup(id: number): Promise<Permission[]>;
+	findByGroup(id_group: number): Promise<Permission[]>;
 	count(data: Associate): Promise<number>;
 	countByPermission(id_permission: number): Promise<number>;
 	create(data: CreateGroupPermission): Promise<void>;
