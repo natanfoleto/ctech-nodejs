@@ -75,6 +75,7 @@ class AuthenticateUserUseCase {
 					refresh_token,
 					user: {
 						id: user.id,
+						id_group,
 						username: user.username,
 						name: user.name,
 						birthDate: user.birth_date,
