@@ -1,18 +1,15 @@
 import { Request, Response } from 'express';
 
-import { UpdateQuestUseCase } from './updateUseCase';
+import { CreateQuestUseCase } from '@modules/quests/useCase/createQuest/createQuestUseCase';
 
-class UpdateQuestController {
+class CreateQuestController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const updateQuestUseCase = new UpdateQuestUseCase();
-
-			const { id } = req.params;
+			const createQuestUseCase = new CreateQuestUseCase();
 
 			const { name, objective, amount } = req.body;
 
-			const response = await updateQuestUseCase.execute({
-				id: Number(id),
+			const response = await createQuestUseCase.execute({
 				name,
 				objective,
 				amount,
@@ -25,4 +22,4 @@ class UpdateQuestController {
 	}
 }
 
-export { UpdateQuestController };
+export { CreateQuestController };

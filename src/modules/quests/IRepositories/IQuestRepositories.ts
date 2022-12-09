@@ -1,4 +1,4 @@
-import { CreateQuest, Quest, UpdateQuest } from '../dto/quest';
+import { CreateQuest, Quest, UpdateQuest } from '@modules/quests/dto/quest';
 
 export interface IQuestRepositories {
 	findAll(): Promise<Quest[]>;

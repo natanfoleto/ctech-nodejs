@@ -7,7 +7,7 @@ interface IRequest {
 }
 
 class DeleteQuestUseCase {
-	questRepositories: QuestRepositories;
+	private questRepositories: QuestRepositories;
 
 	constructor(questRepositories = new QuestRepositories()) {
 		this.questRepositories = questRepositories;

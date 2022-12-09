@@ -1,6 +1,6 @@
 import prisma from '@libs/prismaClient';
-import { CreateQuest, Quest, UpdateQuest } from '../dto/quest';
-import { IQuestRepositories } from '../IRepositories/IQuestRepositories';
+import { CreateQuest, Quest, UpdateQuest } from '@modules/quests/dto/quest';
+import { IQuestRepositories } from '@modules/quests/IRepositories/IQuestRepositories';
 
 class QuestRepositories implements IQuestRepositories {
 	async findAll(): Promise<Quest[]> {

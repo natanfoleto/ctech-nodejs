@@ -2,8 +2,8 @@ import { QuestRepositories } from '@modules/quests/repositories/questRepositorie
 import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
 
-class FindAllQuestUseCase {
-	questRepositories: QuestRepositories;
+class FindAllQuestsUseCase {
+	private questRepositories: QuestRepositories;
 
 	constructor(questRepositories = new QuestRepositories()) {
 		this.questRepositories = questRepositories;
@@ -25,4 +25,4 @@ class FindAllQuestUseCase {
 	}
 }
 
-export { FindAllQuestUseCase };
+export { FindAllQuestsUseCase };

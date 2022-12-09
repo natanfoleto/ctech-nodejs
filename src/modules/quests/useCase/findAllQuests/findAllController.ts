@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
-import { FindAllQuestUseCase } from './findAllUseCase';
+import { FindAllQuestsUseCase } from '@modules/quests/useCase/findAllQuests/findAllUseCase';
 
-class FindAllController {
+class FindAllQuestsController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const createQuestUseCase = new FindAllQuestUseCase();
+			const createQuestUseCase = new FindAllQuestsUseCase();
 
 			const response = await createQuestUseCase.execute();
 
@@ -16,4 +16,4 @@ class FindAllController {
 	}
 }
 
-export { FindAllController };
+export { FindAllQuestsController };

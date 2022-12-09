@@ -3,30 +3,37 @@ import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
 
 interface IRequest {
-	id: number;
 	name: string;
 	objective: string;
 	amount: number;
 }
 
-class UpdateQuestUseCase {
-	questRepositories: QuestRepositories;
+class CreateQuestUseCase {
+	private questRepositories: QuestRepositories;
 
 	constructor(questRepositories = new QuestRepositories()) {
 		this.questRepositories = questRepositories;
 	}
 
-	async execute({ id, name, objective, amount }: IRequest): Promise<any> {
+	async execute({ name, objective, amount }: IRequest): Promise<any> {
 		try {
-			await this.questRepositories.update({
-				id,
+			const questFound = await this.questRepositories.countByName(name);
+
+			if (questFound) {
+				return new AppError({
+					message: 'Esta quest ja existe!',
+				});
+			}
+
+			const quest = await this.questRepositories.create({
 				name,
 				objective,
 				amount,
 			});
 
 			return new AppResponse({
-				message: 'Quest atualizada com sucesso!',
+				message: 'Quest cadastrada com sucesso!',
+				data: quest,
 			});
 		} catch (error) {
 			throw new AppError({
@@ -37,4 +44,4 @@ class UpdateQuestUseCase {
 	}
 }
 
-export { UpdateQuestUseCase };
+export { CreateQuestUseCase };
