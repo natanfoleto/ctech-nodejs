@@ -8,6 +8,7 @@ import { gameRoutes } from './game.routes';
 import { groupRoutes } from './group.routes';
 import { permissionRoutes } from './permission.routes';
 import { groupPermissionRoutes } from './group.permission.routes';
+import { questRoutes } from './quest.routes';
 import { attractionRoutes } from './attraction.routes';
 
 const router = Router();
@@ -20,6 +21,7 @@ router.use('/game', gameRoutes);
 router.use('/group', groupRoutes);
 router.use('/permission', permissionRoutes);
 router.use('/grouppermission', groupPermissionRoutes);
+router.use('/quest', questRoutes);
 router.use('/attraction', attractionRoutes);
 
 export { router };
