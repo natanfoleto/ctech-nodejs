@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { FindAllQuestsUseCase } from '@modules/quests/useCase/findAllQuests/findAllUseCase';
+import { FindAllQuestsUseCase } from '@modules/quests/useCase/findAllQuests/findAllQuestsUseCase';
 
 class FindAllQuestsController {
 	async handle(req: Request, res: Response): Promise<Response> {
