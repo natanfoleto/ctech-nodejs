@@ -26,14 +26,14 @@ class UpdateEventUseCase {
 			if (!name)
 				return new AppError({ message: 'O evento não pode estar vazio' });
 
-			const event = await this.eventRepositories.update({
+			await this.eventRepositories.update({
 				id,
 				name,
 				notes,
 				banner_url: bannerUrl,
 			});
 
-			return new AppResponse({ data: event });
+			return new AppResponse({ message: 'Evento atualizado com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',

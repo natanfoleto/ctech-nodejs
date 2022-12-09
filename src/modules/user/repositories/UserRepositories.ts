@@ -14,7 +14,6 @@ class UserRepositories implements IUserRepositories {
 				username: true,
 				birth_date: true,
 				phone: true,
-				insignias: true,
 				created_at: true,
 			},
 		});
@@ -32,6 +31,21 @@ class UserRepositories implements IUserRepositories {
 		});
 	}
 
+	async findAll(): Promise<User[]> {
+		return prisma.users.findMany({
+			select: {
+				id: true,
+				name: true,
+				username: true,
+				phone: true,
+				id_group: true,
+				group: { select: { name: true } },
+				birth_date: true,
+				created_at: true,
+			},
+		});
+	}
+
 	async findById(id: number): Promise<User> {
 		return prisma.users.findFirst({
 			where: { id },
@@ -39,9 +53,10 @@ class UserRepositories implements IUserRepositories {
 				id: true,
 				name: true,
 				username: true,
-				birth_date: true,
 				phone: true,
-				insignias: true,
+				id_group: true,
+				group: { select: { name: true } },
+				birth_date: true,
 				created_at: true,
 			},
 		});
@@ -59,10 +74,10 @@ class UserRepositories implements IUserRepositories {
 		});
 	}
 
-	async updateUser({ id, phone }: UpdateUser): Promise<void> {
+	async updateUser({ id, name, phone, id_group }: UpdateUser): Promise<void> {
 		await prisma.users.update({
 			where: { id },
-			data: { phone },
+			data: { name, phone, id_group },
 		});
 	}
 

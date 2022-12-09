@@ -6,10 +6,10 @@ import { GroupPermissionRepositories } from '@modules/groupPermission/repositori
 
 interface IRequest {
 	id_group: number;
-	id_permission: number;
+	permissions: number[];
 }
 
-class CreateGroupPermissionUseCase {
+class UpdateGroupPermissionUseCase {
 	groupRepositories: GroupRepositories;
 	permissionRepositories: PermissionRepositories;
 	groupPermissionRepositories: GroupPermissionRepositories;
@@ -24,7 +24,7 @@ class CreateGroupPermissionUseCase {
 		this.groupPermissionRepositories = groupPermissionRepositories;
 	}
 
-	async execute({ id_group, id_permission }: IRequest): Promise<any> {
+	async execute({ id_group, permissions }: IRequest): Promise<any> {
 		try {
 			const groupFound = await this.groupRepositories.countById(id_group);
 
@@ -34,35 +34,36 @@ class CreateGroupPermissionUseCase {
 				});
 			}
 
-			const permissionFound = await this.permissionRepositories.findById(
-				id_permission
-			);
+			const permissionsFound = await this.permissionRepositories.findAll();
 
-			if (!permissionFound) {
-				return new AppError({
-					message: 'Permissão não encontrada',
-				});
-			}
+			const ids = permissionsFound.map((permission) => permission.id);
 
-			const associateFound = await this.groupPermissionRepositories.count({
-				id_group,
-				id_permission,
+			const found = permissions.map((permission) => {
+				const permissionExists = ids.find((item) => item === permission);
+
+				if (!permissionExists) return permission;
+
+				return null;
 			});
 
-			if (associateFound) {
-				return new AppError({
-					message: 'Esse grupo já tem essa permissão',
-				});
-			}
+			const notFound = found.filter((i) => i);
 
-			const userEvent = await this.groupPermissionRepositories.create({
-				id_group,
-				id_permission,
+			if (notFound.length > 0)
+				return new AppError({
+					message: `A(s) permissões com o(s) id(s) ${notFound} não existe(m).`,
+				});
+
+			await this.groupPermissionRepositories.deleteByGroup(id_group);
+
+			permissions.forEach(async (permission) => {
+				await this.groupPermissionRepositories.create({
+					id_group,
+					id_permission: permission,
+				});
 			});
 
 			return new AppResponse({
-				message: 'Permissão concedida à este grupo com sucesso!',
-				data: userEvent,
+				message: 'Permissão(ões) concedidas à este grupo com sucesso!',
 			});
 		} catch (error) {
 			throw new AppError({
@@ -73,4 +74,4 @@ class CreateGroupPermissionUseCase {
 	}
 }
 
-export { CreateGroupPermissionUseCase };
+export { UpdateGroupPermissionUseCase };

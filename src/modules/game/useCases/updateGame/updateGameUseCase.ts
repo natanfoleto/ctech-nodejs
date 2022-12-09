@@ -1,8 +1,9 @@
-import { GameRepositories } from '@modules/game/repositories/GameRepositories';
 import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
+import { GameRepositories } from '@modules/game/repositories/GameRepositories';
 
 interface IRequest {
+	id: number;
 	name: string;
 	device: string;
 	modality: string;
@@ -13,14 +14,15 @@ interface IRequest {
 	bannerUrl: string;
 }
 
-class CreateGameUseCase {
-	private gameRepositories: GameRepositories;
+class UpdateGameUseCase {
+	gameRepositories: GameRepositories;
 
 	constructor(gameRepositories = new GameRepositories()) {
 		this.gameRepositories = gameRepositories;
 	}
 
 	async execute({
+		id,
 		name,
 		device,
 		modality,
@@ -28,7 +30,15 @@ class CreateGameUseCase {
 		bannerUrl,
 	}: IRequest): Promise<any> {
 		try {
-			const user = await this.gameRepositories.create({
+			const gameFound = await this.gameRepositories.countById(id);
+
+			if (!gameFound) return new AppError({ message: 'Game não encontrado!' });
+
+			if (!name)
+				return new AppError({ message: 'O game não pode estar vazio' });
+
+			await this.gameRepositories.update({
+				id,
 				name,
 				device,
 				modality,
@@ -36,10 +46,7 @@ class CreateGameUseCase {
 				banner_url: bannerUrl,
 			});
 
-			return new AppResponse({
-				message: 'Game criado com sucesso',
-				data: user,
-			});
+			return new AppResponse({ message: 'Game atualizado com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',
@@ -49,4 +56,4 @@ class CreateGameUseCase {
 	}
 }
 
-export { CreateGameUseCase };
+export { UpdateGameUseCase };

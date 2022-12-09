@@ -35,7 +35,6 @@ model users {
   password_salt String       @db.VarChar(200)
   created_at    DateTime?    @default(now()) @db.Timestamp(6)
   phone         String?      @db.VarChar(15)
-  insignias     Int?         @default(0)
   id_group      Int          @default(2)
   group         groups       @relation(fields: [id_group], references: [id])
   user_event    user_event[]
@@ -46,7 +45,7 @@ model games {
   id         Int     @id @default(autoincrement())
   name       String  @db.VarChar(100)
   device     String  @db.VarChar(50)
-  free       Int
+  modality   String  @db.VarChar(50)
   schedules  String  @db.VarChar(2000)
   banner_url String? @db.VarChar(200)
 }
@@ -66,13 +65,12 @@ model quests {
 }
 
 model user_quest {
-  id        Int @default(autoincrement())
+  id        Int    @default(autoincrement())
   id_user   Int
   id_quest  Int
   collected Int
-
-  users  users  @relation(fields: [id_user], references: [id])
-  quests quests @relation(fields: [id_quest], references: [id])
+  quests    quests @relation(fields: [id_quest], references: [id])
+  users     users  @relation(fields: [id_user], references: [id])
 
   @@id([id, id_user, id_quest])
 }
@@ -80,8 +78,8 @@ model user_quest {
 model groups {
   id               Int                @id @default(autoincrement())
   name             String             @db.VarChar(50)
-  user             users[]
   group_permission group_permission[]
+  user             users[]
 }
 
 model group_permission {

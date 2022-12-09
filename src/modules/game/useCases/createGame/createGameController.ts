@@ -7,14 +7,14 @@ class CreateGameController {
 		try {
 			const createGameUseCase = new CreateGameUseCase();
 
-			const { name, device, free, schedules, banner_url } = req.body;
+			const { name, device, modality, schedules, bannerUrl } = req.body;
 
 			const response = await createGameUseCase.execute({
 				name,
 				device,
-				free,
+				modality,
 				schedules,
-				banner_url,
+				bannerUrl,
 			});
 
 			return res.json(response);

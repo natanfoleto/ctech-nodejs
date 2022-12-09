@@ -34,9 +34,10 @@ class AuthenticateUserUseCase {
 
 			const { id_group } = user;
 
-			const data = await this.groupPermissionRepositories.findByGroup(id_group);
+			const permissionsGroup =
+				await this.groupPermissionRepositories.findByGroup(id_group);
 
-			const permissions = data.map(({ permission }) => {
+			const permissions = permissionsGroup.map(({ permission }) => {
 				const { id, name, lore, type } = permission;
 
 				return { id, name, lore, type };
@@ -74,6 +75,7 @@ class AuthenticateUserUseCase {
 					refresh_token,
 					user: {
 						id: user.id,
+						id_group,
 						username: user.username,
 						name: user.name,
 						birthDate: user.birth_date,

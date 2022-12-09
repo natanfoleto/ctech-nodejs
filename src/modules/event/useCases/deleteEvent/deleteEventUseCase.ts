@@ -24,7 +24,7 @@ class DeleteEventUseCase {
 
 			await this.eventRepositories.delete(id);
 
-			return new AppResponse({ message: 'Evento deletado' });
+			return new AppResponse({ message: 'Evento deletado com sucesso' });
 		} catch (error) {
 			throw new AppError({
 				message: 'Internal server error',

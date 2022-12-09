@@ -4,7 +4,9 @@ import { AppResponse } from '@shared/answers/AppResponse';
 
 interface IRequest {
 	id: number;
+	name: string;
 	phone: string;
+	groupId: number;
 }
 
 class UpdateUserUseCase {
@@ -14,13 +16,8 @@ class UpdateUserUseCase {
 		this.userRepositories = userRepositories;
 	}
 
-	async execute({ id, phone }: IRequest): Promise<any> {
+	async execute({ id, name, phone, groupId }: IRequest): Promise<any> {
 		try {
-			if (!phone)
-				return new AppError({
-					message: 'O número de telefone não pode estar vazio',
-				});
-
 			const userFound = await this.userRepositories.countById(id);
 
 			if (!userFound)
@@ -30,7 +27,9 @@ class UpdateUserUseCase {
 
 			await this.userRepositories.updateUser({
 				id,
+				name,
 				phone,
+				id_group: groupId,
 			});
 
 			return new AppResponse({ message: 'Usuário atualizado com sucesso' });

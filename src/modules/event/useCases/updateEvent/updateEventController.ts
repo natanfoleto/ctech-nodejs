@@ -1,5 +1,5 @@
-import { UpdateEventUseCase } from '@modules/event/useCases/updateEvent/updateEventUseCase';
 import { Request, Response } from 'express';
+import { UpdateEventUseCase } from '@modules/event/useCases/updateEvent/updateEventUseCase';
 
 class UpdateEventController {
 	async handle(req: Request, res: Response) {
