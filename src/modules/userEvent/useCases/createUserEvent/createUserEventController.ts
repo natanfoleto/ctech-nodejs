@@ -6,11 +6,12 @@ class CreateUserEventController {
 		try {
 			const createUserEventUseCase = new CreateUserEventUseCase();
 
-			const { id_event, id_user } = req.body;
+			const { id_event, id_user, nickname } = req.body;
 
 			const response = await createUserEventUseCase.execute({
 				id_event,
 				id_user,
+				nickname,
 			});
 
 			return res.json(response);

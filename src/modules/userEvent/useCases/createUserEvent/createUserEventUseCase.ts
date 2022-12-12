@@ -7,6 +7,7 @@ import { AppResponse } from '@shared/answers/AppResponse';
 interface IRequest {
 	id_event: number;
 	id_user: number;
+	nickname: string;
 }
 
 class CreateUserEventUseCase {
@@ -24,7 +25,7 @@ class CreateUserEventUseCase {
 		this.userEventRepositories = userEventRepositories;
 	}
 
-	async execute({ id_event, id_user }: IRequest): Promise<any> {
+	async execute({ id_event, id_user, nickname }: IRequest): Promise<any> {
 		try {
 			const userFound = await this.userRepositories.countById(id_user);
 
@@ -56,6 +57,7 @@ class CreateUserEventUseCase {
 			const userEvent = await this.userEventRepositories.create({
 				id_event,
 				id_user,
+				nickname,
 			});
 
 			return new AppResponse({
