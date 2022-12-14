@@ -19,6 +19,7 @@ model user_event {
   id         Int       @default(autoincrement())
   id_user    Int
   id_event   Int
+  nickname   String
   created_at DateTime? @default(now()) @db.Timestamp(6)
   event      events    @relation(fields: [id_event], references: [id])
   user       users     @relation(fields: [id_user], references: [id])
