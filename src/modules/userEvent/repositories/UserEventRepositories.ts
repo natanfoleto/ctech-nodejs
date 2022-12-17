@@ -18,23 +18,24 @@ class UserEventRepositories implements IUserEventRepositories {
 	}
 
 	async findByUserUserId(id: number): Promise<any> {
+		console.log('Hi');
 		return prisma.user_event.findMany({
 			where: { user: { id } },
-			select: { event: true },
+			select: { event: true, id: true, nickname: true },
 		});
 	}
 
 	async findByUserName(name: string): Promise<any> {
 		return prisma.user_event.findMany({
 			where: { user: { name: { contains: name } } },
-			select: { event: true },
+			select: { event: true, nickname: true },
 		});
 	}
 
 	async findByUserUsername(username: string): Promise<any> {
 		return prisma.user_event.findMany({
 			where: { user: { username: { contains: username } } },
-			select: { event: true },
+			select: { event: true, nickname: true },
 		});
 	}
 
@@ -42,6 +43,7 @@ class UserEventRepositories implements IUserEventRepositories {
 		return prisma.user_event.findMany({
 			where: { event: { name: { contains: name } } },
 			select: {
+				nickname: true,
 				user: {
 					select: {
 						id: true,
@@ -61,9 +63,20 @@ class UserEventRepositories implements IUserEventRepositories {
 		});
 	}
 
-	async create({ id_event, id_user }: CreateUserEvent): Promise<void> {
+	async create({
+		id_event,
+		id_user,
+		nickname,
+	}: CreateUserEvent): Promise<void> {
 		await prisma.user_event.create({
-			data: { id_event, id_user },
+			data: { id_event, id_user, nickname },
+		});
+	}
+
+	async updateNickname({ id, nickname }): Promise<void> {
+		await prisma.user_event.updateMany({
+			where: { id },
+			data: { nickname },
 		});
 	}
 

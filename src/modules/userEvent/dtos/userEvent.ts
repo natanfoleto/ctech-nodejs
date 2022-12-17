@@ -10,4 +10,9 @@ interface CreateUserEvent {
 	nickname: string;
 }
 
-export { CreateUserEvent, Associate };
+interface UpdateNickName {
+	id: number;
+	nickname: string;
+}
+
+export { CreateUserEvent, UpdateNickName, Associate };
