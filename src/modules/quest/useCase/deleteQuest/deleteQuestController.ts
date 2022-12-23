@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { DeleteQuestUseCase } from '@modules/quests/useCase/deleteQuest/deleteQuestUseCase';
+import { DeleteQuestUseCase } from '@modules/quest/useCase/deleteQuest/deleteQuestUseCase';
 
 class DeleteQuestController {
 	async handle(req: Request, res: Response): Promise<Response> {

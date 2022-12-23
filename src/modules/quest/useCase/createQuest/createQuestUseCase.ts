@@ -1,4 +1,4 @@
-import { QuestRepositories } from '@modules/quests/repositories/questRepositories';
+import { QuestRepositories } from '@modules/quest/repositories/questRepositories';
 import { AppError } from '@shared/answers/AppError';
 import { AppResponse } from '@shared/answers/AppResponse';
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { UpdateQuestUseCase } from '@modules/quests/useCase/updateQuest/updateQuestUseCase';
+import { UpdateQuestUseCase } from '@modules/quest/useCase/updateQuest/updateQuestUseCase';
 
 class UpdateQuestController {
 	async handle(req: Request, res: Response): Promise<Response> {
